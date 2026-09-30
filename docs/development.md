@@ -53,6 +53,9 @@ template image, so macOS tints it for light and dark menu bars. The two active s
 colour (the blue bar, the reddish veins) and are drawn with the label colour of the menu bar's
 current appearance. `AppDelegate` redraws the icon whenever the session or the clock changes.
 
+**Open at login.** The toggle in `ConfigView` registers or unregisters the app bundle with
+`SMAppService.mainApp` and then shows whatever status the system reports.
+
 **No Dock icon.** The app runs with the accessory activation policy and `LSUIElement` set in
 `Info.plist`.
 

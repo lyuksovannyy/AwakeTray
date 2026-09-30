@@ -9,6 +9,7 @@ choose, or until you tell it to stop.
 
 - **Click** the eye to choose how long to stay awake and whether the display stays on too.
 - **Double-click** the eye to start or stop right away.
+- Optionally have it **open at login**, from the same menu.
 
 | Icon | Meaning |
 | --- | --- |

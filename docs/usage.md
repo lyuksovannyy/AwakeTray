@@ -28,6 +28,10 @@ flash them on screen.
   shortcuts for 15 and 30 minutes and 1, 2, 4 and 8 hours.
 - **Keep the display on too**: on by default. Turn it off to let the screen sleep while the Mac
   itself stays awake (useful for downloads or long-running jobs).
+- **Open at login**: off by default. Turn it on to have AwakeTray start when you log in. It
+  starts switched off (closed eye); it does not resume a previous session. Move the app to your
+  Applications folder before turning this on, because macOS remembers where the app was. You can
+  also manage it under System Settings > General > Login Items.
 - **Keep Awake / Stop**: the same as double-clicking the eye.
 - **Quit**: closes AwakeTray and lets the Mac sleep again.
 
@@ -40,8 +44,6 @@ When a timed session ends, AwakeTray switches itself off and the eye closes.
 
 - AwakeTray blocks *idle* sleep only. Closing the lid, choosing Sleep from the Apple menu, or a
   critically low battery still put the Mac to sleep.
-- AwakeTray does not start by itself at login. To make it, add it under
-  System Settings > General > Login Items.
 - To check that it is working, run `pmset -g assertions` in Terminal while the eye is open and
   look for "AwakeTray is keeping this Mac awake".
 

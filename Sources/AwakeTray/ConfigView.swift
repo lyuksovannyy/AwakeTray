@@ -1,7 +1,9 @@
+import ServiceManagement
 import SwiftUI
 
 struct ConfigView: View {
     @ObservedObject var awake: AwakeController
+    @State private var opensAtLogin = SMAppService.mainApp.status == .enabled
 
     private static let presets = [15, 30, 60, 120, 240, 480]
 
@@ -41,6 +43,10 @@ struct ConfigView: View {
 
             Divider()
 
+            Toggle("Open at login", isOn: openAtLogin)
+
+            Divider()
+
             HStack {
                 Button(awake.isActive ? "Stop" : "Keep Awake") { awake.toggle() }
                     .keyboardShortcut(.defaultAction)
@@ -54,6 +60,25 @@ struct ConfigView: View {
         }
         .padding(14)
         .frame(width: 280)
+        // The user can also change this in System Settings, so re-read it each time.
+        .onAppear { opensAtLogin = SMAppService.mainApp.status == .enabled }
+    }
+
+    private var openAtLogin: Binding<Bool> {
+        Binding(get: { opensAtLogin },
+                set: { enable in
+                    do {
+                        if enable {
+                            try SMAppService.mainApp.register()
+                        } else {
+                            try SMAppService.mainApp.unregister()
+                        }
+                    } catch {
+                        NSLog("AwakeTray: could not change login item: %@", error.localizedDescription)
+                    }
+                    // Show what the system actually did, not what was asked for.
+                    opensAtLogin = SMAppService.mainApp.status == .enabled
+                })
     }
 
     private var status: String {
