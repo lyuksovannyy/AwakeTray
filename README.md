@@ -1,9 +1,13 @@
 # AwakeTray
-Make your Mac not fall asleep
 
-A menu bar eye that keeps your Mac awake.
+<img src="docs/app-icon.png" width="128" alt="AwakeTray icon">
 
-- **Click** the eye to open the settings: how long to stay awake, and whether the display stays on too.
+Make your Mac not fall asleep.
+
+AwakeTray is a small menu bar eye. While the eye is open, your Mac stays awake: for a time you
+choose, or until you tell it to stop.
+
+- **Click** the eye to choose how long to stay awake and whether the display stays on too.
 - **Double-click** the eye to start or stop right away.
 
 | Icon | Meaning |
@@ -14,14 +18,34 @@ A menu bar eye that keeps your Mac awake.
 
 ![Tray icons](docs/tray-icons.png)
 
-## Build
+## Install
 
-Requires macOS 13 or later and the Swift toolchain (Xcode or the Command Line Tools).
+1. Download `AwakeTray-<version>.zip` from the
+   [Releases](https://github.com/lyuksovannyy/AwakeTray/releases) page and unzip it.
+2. Move `AwakeTray.app` to your Applications folder and open it.
+3. The app is not notarized, so macOS blocks it the first time. Go to
+   System Settings > Privacy & Security and choose **Open Anyway**.
+
+Requires macOS 13 or later. Works on Apple silicon and Intel Macs.
+
+If the eye does not show up, your menu bar is probably full and the icon is hidden behind the
+notch; see [Troubleshooting](docs/troubleshooting.md).
+
+## Build from source
 
 ```sh
-Scripts/build-app.sh      # builds build/AwakeTray.app
+Scripts/build-app.sh
 open build/AwakeTray.app
 ```
 
-The icons are drawn in code (`Sources/AwakeTray/TrayIcon.swift`). After changing them, run
-`Scripts/generate-icons.sh` to refresh `Resources/AppIcon.icns` and the previews in `docs/`.
+Needs Xcode or the Command Line Tools.
+
+## Documentation
+
+- [Using AwakeTray](docs/usage.md): the icon states, clicks and settings
+- [Troubleshooting](docs/troubleshooting.md): missing icon, Gatekeeper warning, Mac still sleeping
+- [Development](docs/development.md): project layout, how it works, icons, releasing
+
+## License
+
+[MIT](LICENSE)
