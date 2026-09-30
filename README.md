@@ -21,11 +21,12 @@ choose, or until you tell it to stop.
 
 ## Install
 
-1. Download `AwakeTray-<version>.zip` from the
-   [Releases](https://github.com/lyuksovannyy/AwakeTray/releases) page and unzip it.
-2. Move `AwakeTray.app` to your Applications folder and open it.
-3. The app is not notarized, so macOS blocks it the first time. Go to
-   System Settings > Privacy & Security and choose **Open Anyway**.
+1. Download `AwakeTray-<version>.dmg` from the
+   [Releases](https://github.com/lyuksovannyy/AwakeTray/releases) page and open it.
+2. Drag AwakeTray onto the Applications folder in the window that appears, then eject the
+   disk image.
+3. Open AwakeTray from Applications. It is not notarized, so macOS blocks it the first time:
+   go to System Settings > Privacy & Security and choose **Open Anyway**.
 
 Requires macOS 13 or later. Works on Apple silicon and Intel Macs.
 

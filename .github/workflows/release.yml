@@ -17,9 +17,8 @@ jobs:
       - name: Build universal app
         run: VERSION="${GITHUB_REF_NAME#v}" Scripts/build-app.sh --arch arm64 --arch x86_64
 
-      - name: Zip app
-        # ditto keeps the bundle's code signature and metadata intact.
-        run: ditto -c -k --keepParent build/AwakeTray.app "AwakeTray-$GITHUB_REF_NAME.zip"
+      - name: Build disk image
+        run: Scripts/build-dmg.sh "AwakeTray-$GITHUB_REF_NAME.dmg"
 
       - name: Publish release
         env:
@@ -27,7 +26,7 @@ jobs:
         # Re-pushing an existing tag replaces the download on its release.
         run: |
           if gh release view "$GITHUB_REF_NAME" >/dev/null 2>&1; then
-            gh release upload "$GITHUB_REF_NAME" "AwakeTray-$GITHUB_REF_NAME.zip" --clobber
+            gh release upload "$GITHUB_REF_NAME" "AwakeTray-$GITHUB_REF_NAME.dmg" --clobber
           else
-            gh release create "$GITHUB_REF_NAME" "AwakeTray-$GITHUB_REF_NAME.zip" --title "AwakeTray $GITHUB_REF_NAME" --generate-notes
+            gh release create "$GITHUB_REF_NAME" "AwakeTray-$GITHUB_REF_NAME.dmg" --title "AwakeTray $GITHUB_REF_NAME" --generate-notes
           fi

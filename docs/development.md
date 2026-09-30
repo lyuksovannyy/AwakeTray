@@ -22,6 +22,9 @@ The script builds in release mode, assembles `build/AwakeTray.app` from the bina
   binary; that needs full Xcode, not just the Command Line Tools.
 - `VERSION=1.2.0 Scripts/build-app.sh` stamps that version into the bundle.
 
+To make the installer disk image (the app plus a shortcut to Applications), run
+`Scripts/build-dmg.sh` afterwards; it writes `build/AwakeTray.dmg`.
+
 `open` does nothing visible if AwakeTray is already running. Quit the old copy first
 (`pkill -x AwakeTray`) to try a new build.
 
@@ -75,8 +78,9 @@ preview shows each state at 8x and at real retina size, on a dark and a light me
 ## Releasing
 
 `.github/workflows/release.yml` runs when a tag starting with `v` is pushed. It builds a
-universal app on a macOS runner, stamps the version from the tag, zips the bundle and creates a
-GitHub release with the zip attached and generated notes.
+universal app on a macOS runner, stamps the version from the tag, packs it into a disk image and
+creates a GitHub release with the image attached and generated notes. Pushing a tag that already
+has a release replaces the download instead.
 
 ```sh
 git tag v1.0.0
